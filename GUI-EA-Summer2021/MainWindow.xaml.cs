@@ -58,9 +58,33 @@ namespace GUI_EA_Summer2021
 
     public partial class MainWindow : Window
     {
+        World world = new World();
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void PlayerInputSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            world.Player.Name = InputBox.Text;
+            UpdatePlayerInformation();
+            SetUpPlayerCanvas.Visibility = Visibility.Collapsed;
+        }
+
+        private void UpdatePlayerInformation()
+        {
+
+            PlayerInformation.Text = world.Player.GetPlayerInformation();
+        }
+
+        private void MainGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            UpdatePlayerInformation();
+        }
+
+        private void MountainButton_Click(object sender, RoutedEventArgs e)
+        {
+            ImageBox.Source = new BitmapImage(new Uri("prog-101-gui-ea-demo-placeholder01.jpg", UriKind.Relative));
         }
     }
 }
